@@ -69,14 +69,25 @@ public class Setup {
             start.setDisable(true);
             reset.setDisable(false);
             go.setDisable(false);
+            ((RadioButton)(tg.getToggles().get(0))).setDisable(true);
+            ((RadioButton)(tg.getToggles().get(1))).setDisable(true);
             Judge_New.setFromChess(null);
             Judge_New.setToChess(null);
             ChessBoard.setIsChosen();
+            if(Judge_New.getTurn() == 0 && tg.getToggles().get(0).isSelected()) {
+     //           Judge_New.setTurn();
+            }
         });
 
         go.setOnMouseClicked(e -> {
      //       Judge_New.getDice(Integer.parseInt(number.getText()));
-            new AI(back).setDice(Integer.parseInt(number.getText()));
+
+            if(Judge_New.getTurn() == 0 && tg.getToggles().get(1).isSelected()) {
+                new AI(back, 0).setDice(Integer.parseInt(number.getText()));
+            }
+            else if(Judge_New.getTurn() == 1 && tg.getToggles().get(0).isSelected()) {
+                new AI(back, 1).setDice(Integer.parseInt(number.getText()));
+            }
         });
     }
 

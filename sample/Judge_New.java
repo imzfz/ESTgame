@@ -118,8 +118,8 @@ public class Judge_New {
             if (toChess.getRow() == fromChess.getRow() + toward || toChess.getRow() == fromChess.getRow()) {
                 count();
                 ((Label) (toPane.getChildren().get(1))).setText(fromChess.getNum());
-                back.setBackNum(fromRow, fromColumn, Integer.parseInt(to));
                 back.setBackNum(toRow, toColumn, Integer.parseInt(from));
+                back.setBackNum(fromRow, fromColumn, 0);
                 back.setBackColor(fromRow, fromColumn, -1);
                 back.setBackColor(toRow, toColumn, fromChess.getColor());
                 ((Label) (fromPane.getChildren().get(1))).setText("");
@@ -136,13 +136,13 @@ public class Judge_New {
         if (toChess.getColumn() == fromChess.getColumn()) {
             if (toChess.getRow() == fromChess.getRow() + toward) {
                 count();
-                back.setBackNum(fromRow, fromColumn, Integer.parseInt(to));
+                back.setBackNum(fromRow, fromColumn, 0);
                 back.setBackNum(toRow, toColumn, Integer.parseInt(from));
                 back.setBackColor(fromRow, fromColumn, -1);
                 back.setBackColor(toRow, toColumn, fromChess.getColor());
                 toChess.setNum(fromChess.getNum());
                 toChess.setColor(fromChess.getColor());
-                toChess.fillProperty().set(Color.RED);
+                toChess.fillProperty().set(color);
                 ((Label) (fromPane.getChildren().get(1))).setText("");
                 ((Label) (toPane.getChildren().get(1))).setText(fromChess.getNum());
                 fromChess.fillProperty().set(Color.WHITE);
@@ -158,7 +158,9 @@ public class Judge_New {
     }
 
     public void blueMove(){
-        move();
+        if(turn == 1) {
+            move();
+        }
     }
 
     public static int getTurn() {
@@ -178,7 +180,7 @@ public class Judge_New {
         }
     }
 
-    public void win(){
+    public static void win(){
         if(back.getBackColor(4, 4) == 0 || back.getBlueCount() == 0){
             System.out.println("red win");
         }

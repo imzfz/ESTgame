@@ -122,4 +122,13 @@ public class ChessBoard {
     public static StackPane getSp(int x, int y){
         return paneArray.get(x * 5 + y);
     }
+
+    public static boolean hasDice(int color, String num){
+        for(Chess_New e : chessArray){
+            if(e.getColor() == color && e.getNum().equals(num)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
